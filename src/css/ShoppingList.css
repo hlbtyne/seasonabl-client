@@ -1,0 +1,10 @@
+.shopping-list-view {
+    text-align: center;
+}
+
+.shopping-list-container {
+    margin-top: 20px;
+    width: 90%;
+    display: inline-block;
+    background-color: white;
+}

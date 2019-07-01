@@ -21,3 +21,17 @@
     font-size: 50px;
     color: white;
 }
+
+.add {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: transparent;
+    font-size: 30px;
+    border: none;
+    color: white;
+}
+
+.add:hover {
+    font-size: 35px;
+}

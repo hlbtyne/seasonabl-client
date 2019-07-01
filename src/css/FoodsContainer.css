@@ -1,0 +1,10 @@
+.foods-container {
+    display: inline-block;
+    width: 95%;
+    min-width: 640px;
+}
+
+.foods-view {
+    padding-top: 60px;
+    text-align: center;
+}
