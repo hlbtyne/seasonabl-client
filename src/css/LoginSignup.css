@@ -1,0 +1,38 @@
+.login-view {
+    text-align: center;
+}
+
+.form {
+    width: 50%;
+    min-width: 150px;
+    height: 380px;
+    margin: 50px;
+    padding: 30px;
+    display: inline-block;
+    background-color: white;
+}
+
+.input {
+    margin-bottom: 30px;
+    height: 40px;
+    width: 80%;
+    font-size: 20px;
+    padding: 5px;
+    border: solid 1px grey
+}
+
+.label {
+    font-size: 20px;
+}
+
+.button {
+    -webkit-appearance: none;
+    padding: 15px;
+    width: 100px;
+    font-size: 20px;
+    border: solid 1px #87a890
+}
+
+.button:hover {
+    background-color: #87a890;
+}

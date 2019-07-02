@@ -1,5 +1,6 @@
 import React from "react";
 import { login } from '../services/api'
+import '../css/LoginSignup.css'
 
 class LoginForm extends React.Component {
     state = {
@@ -26,28 +27,30 @@ class LoginForm extends React.Component {
         const { handleChange, handleSubmit } = this
 
         return (
-            <div>
-              <form>
+            <div className="login-view">
+              <form className="form">
                   <div>
-                    <label htmlFor="name"><p>Username</p></label>
+                    <div className="label"><p>Username</p></div>
                     <input
                         onChange={handleChange}
                         name="name"
                         value={name}
+                        className="input"
                         placeholder="Enter username"
                     />
                   </div>
                   <div>
-                    <label htmlFor="password"><p>Password</p></label>
+                    <div className="label"><p>Password</p></div>
                     <input
                         onChange={handleChange}
                         type="password"
                         name="password"
                         value={password}
+                        className="input"
                         placeholder="Password"
                     />
                   </div>
-                  <button onClick={handleSubmit} type="button">
+                  <button className="button" onClick={handleSubmit} type="button">
                     Log in
                   </button>
                 </form>

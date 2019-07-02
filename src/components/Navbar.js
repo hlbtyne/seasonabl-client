@@ -1,21 +1,31 @@
-import React from "react";
+import React, { Fragment, Component } from "react";
 import { Link } from 'react-router-dom'
 import '../css/App.css'
 
-class LandingPage extends React.Component {
+class LandingPage extends Component {
 
     render() {
 
         return (
             <div className="navbar">
-                <Link to='/foods'>
-                    <img className="logo" src="logo/1.png" alt="logo"/>
-                </Link>
-                <Link to='/shoppinglist'><div className="nav-button">My shopping list</div></Link>
                 {
                     this.props.username
-                        ? <div className="nav-button"><Link onClick={this.props.logout}>Log out</Link></div>
-                        : <div>
+                        ? <Fragment>
+                            <Link to='/foods'>
+                                <img className="logo" src="logo/1.png" alt="logo"/>
+                            </Link>
+                            <Link to='/shoppinglist'><div className="nav-button">My shopping list</div></Link>
+                        </Fragment>
+                        : <Link to='/'>
+                            <img className="logo" src="logo/1.png" alt="logo"/>
+                        </Link>
+                }
+                
+                
+                {
+                    this.props.username
+                        ? <div className="nav-button sessions"><Link onClick={this.props.logout}>Log out</Link></div>
+                        : <div className="sessions">
                             <div className="nav-button"><Link to='/login'>Log in</Link></div>
                             <div className="nav-button"><Link to='/signup'>Sign up</Link></div>
                         </div>

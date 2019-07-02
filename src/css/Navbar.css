@@ -13,3 +13,10 @@
     margin-top: 35px;
     margin-left: 20px;
 }
+
+.sessions {
+    position: absolute;
+    right: 20px;
+    display: flex;
+    flex-direction: row;
+}

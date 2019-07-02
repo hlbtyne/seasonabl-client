@@ -3,8 +3,44 @@
 }
 
 .shopping-list-container {
-    margin-top: 20px;
-    width: 90%;
+    margin-top: 30px;
+    width: 80%;
     display: inline-block;
     background-color: white;
+    padding: 20px;
+}
+
+.item {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    height: 70px;
+}
+
+.image {
+    width: 70px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.name {
+    position: absolute;
+    top: 50%;
+    left: 90px;
+    transform: translate(0, -50%);
+    font-size: 20px;
+}
+
+.line {
+    border: solid 0.5px #e9f1ed;
+}
+
+.checkbox {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    right: 50px;
+    transform: translate(0, -50%);
 }

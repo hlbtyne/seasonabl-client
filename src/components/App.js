@@ -6,17 +6,20 @@ import Navbar from './Navbar'
 import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
 import LandingPage from './LandingPage'
-import FoodPage from './foods/FoodPage';
+import FoodPage from './foods/FoodPage'
 import ShoppingList from './ShoppingList'
 
 import { validate } from '../services/api'
 
 const baserURL = "http://localhost:3001"
 const usersURL = `${baserURL}/users`
+const foodsURL = `${baserURL}/foods`
+const shoppingListURL = `${baserURL}/shopping_list_items`
 
 class App extends Component {
 
   state = {
+    foods: [],
     username: '',
     currentUser: null,
     shoppingList: []
@@ -46,21 +49,77 @@ class App extends Component {
           alert(data.error)
         } else {
           this.login(data)
+          return fetch(foodsURL)
+            .then(resp => resp.json())
+            .then(foods => this.setState({ foods }))
         }
       })
     }
   }
 
-  addItemToShoppingList = item => {
-    
+  addItemToList = food => {
+    if (!this.state.shoppingList.find(f => f.name === food.name)) {
+
+      this.findCurrentUser(this.state.currentUser)
+      .then(user => {
+        const newListItem = {
+          food_id: food.id,
+          user_id: user.id
+        }
+        this.createShoppingListItemBackend(newListItem)
+        this.findIteminFoods(newListItem)})
+    }
   }
 
-  updateShoppingList = user => {
+  findIteminFoods = (item) => {
+    const selectedFood = this.state.foods.find(f => f.id === item.food_id)
+    this.setState({ shoppingList: [...this.state.shoppingList, selectedFood] })
+  }
+
+  createShoppingListItemBackend = item => {
+    return fetch(shoppingListURL, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(item)
+    })
+    .then(resp => resp.json())
+  }
+
+  removeItemFromList = food => {
+    const remainingFoods = this.state.shoppingList.filter(f => f.id !== food.id)
+    setTimeout(() => this.setState({ shoppingList: remainingFoods }), 800);
+    
+    this.findCurrentUser(this.state.currentUser)
+      .then(user => {
+        return fetch(shoppingListURL)
+        .then(resp => resp.json())
+        .then(items => {
+          const item = items.find(i => i.user_id === user.id && i.food_id === food.id)
+          // debugger
+          this.removeShoppingListItemBackend(item)
+        })
+      })
+    }
+
+  removeShoppingListItemBackend = item => {
+    fetch(`${shoppingListURL}/${item.id}`, {
+      method: 'DELETE',
+      // headers: {'Content-Type': 'application/json'},
+      // body: JSON.stringify(item)
+    })
+    .then(resp => resp.json())
+  }
+
+  findCurrentUser = user => {
     return fetch(usersURL)
     .then(resp => resp.json())
     .then(users => users.find(u => 
       u.name === user.name
     ))
+  }
+
+  updateShoppingList = user => {
+    this.findCurrentUser(user)
     .then(user => this.setState({ shoppingList: user.foods }))
   }
 
@@ -70,8 +129,8 @@ class App extends Component {
     return (
       <div>
         <Navbar username={username} logout={logout}/>
-        <Route path='/foods' component={props => <FoodPage username={username} {...props} />} />
-        <Route path='/shoppinglist' component={props => <ShoppingList shoppingList={this.state.shoppingList}/>} />
+        <Route path='/foods' component={props => <FoodPage username={username} addItemToList={this.addItemToList} foods={this.state.foods} {...props} />} />
+        <Route path='/shoppinglist' component={props => <ShoppingList shoppingList={this.state.shoppingList} username={username} removeItem={this.removeItemFromList} {...props} />} />
         <Route exact path='/' component={() => <LandingPage />} />
         <Route path='/login' component={props => <LoginForm login={login} {...props} />} />
         <Route path='/signup' component={() => <SignupForm />} />

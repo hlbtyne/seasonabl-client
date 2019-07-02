@@ -11,7 +11,6 @@ const monthsAPI = 'http://localhost:3001/months'
 class FoodPage extends Component {
 
     state = {
-        foods: [],
         months: [],
         currentMonth: '',
         selectedMonth: null,
@@ -37,7 +36,6 @@ class FoodPage extends Component {
         } else {
             fetch(foodsAPI)
                 .then(resp => resp.json())
-                .then(foods => this.setState({ foods }))
                 .then(() => this.setStateOnLoad())
         }
     }
@@ -63,7 +61,7 @@ class FoodPage extends Component {
         return (
             <div className="food-page">
                 < Route path={`/foods/:id`} render={props => {
-                    return <FoodDetails id={(props.match.params.id)} />
+                    return <FoodDetails id={(props.match.params.id)} addItemToList={this.props.addItemToList} />
                 }}/>
                 < Route exact path={this.props.match.path} render={() => {
                     return (
@@ -74,10 +72,11 @@ class FoodPage extends Component {
                                 search={this.updateSearchTerm}
                             />
                             < FoodContainer 
-                                allFoods={this.state.foods}
+                                allFoods={this.props.foods}
                                 currentMonth={this.state.currentMonth} 
                                 selectedMonth={this.state.selectedMonth} 
                                 searchTerm={this.state.searchTerm}
+                                addItemToList={this.props.addItemToList}
                             />
                         </Fragment>
                     )

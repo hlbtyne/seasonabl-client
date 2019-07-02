@@ -15,32 +15,34 @@ class SignupForm extends React.Component {
         const { handleChange, handleSubmit } = this
 
         return (
-            <div>
-              <form>
-                  <div>
-                    <label htmlFor="name"><p>Username</p></label>
-                    <input
-                        onChange={handleChange}
-                        name="name"
-                        value={name}
-                        placeholder="Enter a username"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="password"><p>Password</p></label>
-                    <input
-                        onChange={handleChange}
-                        type="password"
-                        name="password"
-                        value={password}
-                        placeholder="Create a password"
-                    />
-                  </div>
-                  <button onClick={handleSubmit} type="button">
-                    Register
-                  </button>
-                </form>
-            </div>
+          <div className="login-view">
+          <form className="form">
+              <div>
+                <div className="label"><p>Username</p></div>
+                <input
+                    onChange={handleChange}
+                    name="name"
+                    value={name}
+                    className="input"
+                    placeholder="Create a username"
+                />
+              </div>
+              <div>
+                <div className="label"><p>Password</p></div>
+                <input
+                    onChange={handleChange}
+                    type="password"
+                    name="password"
+                    value={password}
+                    className="input"
+                    placeholder="Type a password"
+                />
+              </div>
+              <button className="button" onClick={handleSubmit} type="button">
+                Sign up
+              </button>
+            </form>
+        </div>
               
         );
     }

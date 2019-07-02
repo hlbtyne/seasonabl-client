@@ -10,6 +10,8 @@ class FoodContainer extends React.Component {
                 < FoodItem 
                     food={food} 
                     key={food.id} 
+                    currentMonth={this.props.currentMonth}
+                    addItemToList={this.props.addItemToList}
                 /> 
             )
         }
@@ -18,6 +20,8 @@ class FoodContainer extends React.Component {
                 < FoodItem 
                     food={food} 
                     key={food.id} 
+                    currentMonth={this.props.currentMonth}
+                    addItemToList={this.props.addItemToList}
                 /> 
             )
         }
@@ -26,6 +30,8 @@ class FoodContainer extends React.Component {
                 < FoodItem 
                     food={food} 
                     key={food.id} 
+                    currentMonth={this.props.currentMonth}
+                    addItemToList={this.props.addItemToList}
                 /> 
             )
         } 
