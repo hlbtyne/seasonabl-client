@@ -16,3 +16,30 @@
     transform: translate(0, -50%);
     font-size: 100px;
 }
+
+.recipes-container {
+    margin: 30px;
+}
+
+.recipes-title {
+    margin-bottom: 30px;
+    font-size: 30px;
+    color: #87a890;
+}
+
+.recipe-strip {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: white;
+    /* border: solid 0.2px #87a890; */
+}
+
+.add {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: transparent;
+    font-size: 50px;
+    border: none;
+    color: white;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import '../../css/FoodDetails.css'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 const foodsAPI = 'http://localhost:3001/foods'
 
@@ -11,7 +11,8 @@ class FoodDetails extends React.Component {
         name: '',
         image: '',
         created_at: '',
-        updated_at: ''
+        updated_at: '',
+        recipes: []
     }
 
     componentDidMount() {
@@ -28,7 +29,13 @@ class FoodDetails extends React.Component {
                     <img className="food-details-header-image" src={this.state.image} alt={this.state.name}/>
                     <div className="food-details-header-text">{this.state.name}</div>
                 </div>
-                <Link to='/foods'><button>Back</button></Link>
+                <div className="recipes-container">
+                    <div className="recipes-title">Recipes you can make with {this.state.name}</div>
+                    {
+                        this.state.recipes.map( recipe => <div className="recipe-strip">{recipe.title}</div> )
+                    }
+                </div>
+                
             </div>
         )
     }

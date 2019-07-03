@@ -16,7 +16,7 @@ class SignupForm extends React.Component {
 
         return (
           <div className="login-view">
-          <form className="form">
+          <form onSubmit={(event) => this.props.signup(event, this.state)} className="form">
               <div>
                 <div className="label"><p>Username</p></div>
                 <input
@@ -38,7 +38,7 @@ class SignupForm extends React.Component {
                     placeholder="Type a password"
                 />
               </div>
-              <button className="button" onClick={handleSubmit} type="button">
+              <button className="button" onClick={handleSubmit} type="submit">
                 Sign up
               </button>
             </form>

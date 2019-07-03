@@ -13,19 +13,20 @@ class ShoppingList extends React.Component {
         return (
             <div className="shopping-list-view">
                 <div className="shopping-list-container">
-                <hr className="line"></hr>
-                    {
-                        this.props.shoppingList.map(item => {
-                            return <div>
-                                <div className="item">
-                                    <img className="image" src={item.image} alt={item.name}/>
-                                    <div className="name"> {item.name}</div>
-                                    <input onClick={() => this.props.removeItem(item)} type="checkbox" className="checkbox"></input>
+                    <div className="shopping-list-title">Shopping List</div>
+                    <hr className="line"></hr>
+                        {
+                            this.props.shoppingList.map(item => {
+                                return <div>
+                                    <div className="item">
+                                        <img className="image" src={item.image} alt={item.name}/>
+                                        <div className="name"> {item.name}</div>
+                                        <input onClick={() => this.props.removeItem(item)} type="checkbox" className="checkbox"></input>
+                                    </div>
+                                    <hr className="line"></hr>
                                 </div>
-                                <hr className="line"></hr>
-                            </div>
-                        })
-                    }
+                            })
+                        }
                 </div>
             </div>
         )

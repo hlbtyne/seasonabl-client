@@ -40,11 +40,6 @@ class FoodPage extends Component {
         }
     }
 
-    getFoodDetails = (id) => {
-        return fetch(`${foodsAPI}/${id}`)
-        .then(resp => resp.json())
-    }
-
     filterFoodsByMonth = event => {
         const selectedMonth = this.state.months.filter(m => m.name.toLowerCase() === event.target.value.toLowerCase())
         this.setState({ selectedMonth: selectedMonth[0] })
@@ -61,7 +56,10 @@ class FoodPage extends Component {
         return (
             <div className="food-page">
                 < Route path={`/foods/:id`} render={props => {
-                    return <FoodDetails id={(props.match.params.id)} addItemToList={this.props.addItemToList} />
+                    return <FoodDetails 
+                        id={(props.match.params.id)} 
+                        addItemToList={this.props.addItemToList} 
+                    />
                 }}/>
                 < Route exact path={this.props.match.path} render={() => {
                     return (

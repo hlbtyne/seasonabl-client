@@ -12,16 +12,17 @@ class FoodItem extends React.Component {
             <div className="food-item-tile">
                 <div className="food-item-name">{food.name}</div>
                 <img src={food.image} alt={food.name} className="food-item-image"/>
-                {
-                    this.props.currentMonth.foods.find(f => f.name === food.name)
+                    {this.props.currentMonth.foods.find(f => f.name === food.name) 
                         ? <button 
                             onClick={() => addItemToList(food)} 
                             className="add" 
-                            title='Add to shopping list'>
-                            <i className="fas fa-plus"></i>
+                        >
+                            +
                         </button>
                         : null
-                }
+                    }
+                    
+                        
                 
             </div>
             </Link>

@@ -32,6 +32,12 @@
     font-size: 20px;
 }
 
+.shopping-list-title {
+    margin-bottom: 30px;
+    font-size: 30px;
+    color: #87a890;
+}
+
 .line {
     border: solid 0.5px #e9f1ed;
 }

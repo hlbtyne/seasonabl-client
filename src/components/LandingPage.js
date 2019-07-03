@@ -1,4 +1,5 @@
 import React from "react";
+import '../css/LandingPage.css'
 
 class LandingPage extends React.Component {
 
@@ -6,11 +7,13 @@ class LandingPage extends React.Component {
         
 
         return (
-            <div>
-                <div>Eat seasonably.</div>
-                <div>Rely less on imported foods.</div>
-                <div>Be healthier.</div>
-                <button>Sign up</button>
+            <div className="content">
+                <div className="text-container">
+                    <div className="text">Know what's in season.</div>
+                    <div className="text">Rely less on imported foods.</div>
+                    <div className="text">Eat seasonably.</div>
+                </div>
+                
             </div>
             
         );

@@ -25,7 +25,26 @@ class App extends Component {
     shoppingList: []
   }
 
-  login = (user) => {
+  signup = (event, user) => {
+    event.preventDefault()
+    const newUser = {
+      name: user.name,
+      password: user.password
+    }
+    this.createNewUserBackend(newUser)
+    .then(user => this.login(user))
+  }
+
+  createNewUserBackend = user => {
+    return fetch(usersURL, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(user)
+    })
+    .then(resp => resp.json())
+  }
+
+  login = user => {
     this.setState({ username: user.name })
     this.setState({ currentUser: user })
     this.props.history.push("/foods")
@@ -95,7 +114,6 @@ class App extends Component {
         .then(resp => resp.json())
         .then(items => {
           const item = items.find(i => i.user_id === user.id && i.food_id === food.id)
-          // debugger
           this.removeShoppingListItemBackend(item)
         })
       })
@@ -104,8 +122,6 @@ class App extends Component {
   removeShoppingListItemBackend = item => {
     fetch(`${shoppingListURL}/${item.id}`, {
       method: 'DELETE',
-      // headers: {'Content-Type': 'application/json'},
-      // body: JSON.stringify(item)
     })
     .then(resp => resp.json())
   }
@@ -133,7 +149,7 @@ class App extends Component {
         <Route path='/shoppinglist' component={props => <ShoppingList shoppingList={this.state.shoppingList} username={username} removeItem={this.removeItemFromList} {...props} />} />
         <Route exact path='/' component={() => <LandingPage />} />
         <Route path='/login' component={props => <LoginForm login={login} {...props} />} />
-        <Route path='/signup' component={() => <SignupForm />} />
+        <Route path='/signup' component={() => <SignupForm signup={this.signup} />} />
       </div>
         
     )
