@@ -12,6 +12,7 @@
 .nav-button {
     margin-top: 35px;
     margin-left: 20px;
+    text-decoration: none;
 }
 
 .sessions {
@@ -20,3 +21,8 @@
     display: flex;
     flex-direction: row;
 }
+
+a {
+    color: grey;
+    text-decoration: none;
+  }

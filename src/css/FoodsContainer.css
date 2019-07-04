@@ -5,6 +5,7 @@
 }
 
 .foods-view {
-    padding-top: 60px;
+    position: absolute;
+    top: 60% ;
     text-align: center;
-}
+};

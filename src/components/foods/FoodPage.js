@@ -4,40 +4,26 @@ import FoodContainer from './FoodContainer';
 import FoodDetails from './FoodDetails';
 import SearchAndFilter from './SearchAndFilter';
 import '../../css/FoodPage.css'
+import { SSL_OP_MICROSOFT_BIG_SSLV3_BUFFER } from "constants";
 
 const foodsAPI = 'http://localhost:3001/foods'
-const monthsAPI = 'http://localhost:3001/months'
 
 class FoodPage extends Component {
 
     state = {
-        months: [],
-        currentMonth: '',
         selectedMonth: null,
         searchTerm: null
     }
 
     setStateOnLoad = () => {
-        const today = new Date()
-        fetch(monthsAPI)
-            .then(resp => resp.json())
-            .then(months => {
-                this.setState({ months })
-                this.setState({ currentMonth: months[today.getMonth()] })
-                this.setState({ selectedMonth: null })
-                this.setState({ searchTerm: null })
-
-            })
+        this.setState({ selectedMonth: null })
+        this.setState({ searchTerm: null })
     }
 
     componentDidMount = () => {
-        if (!this.props.username) {
-            this.props.history.push('/login')
-        } else {
-            fetch(foodsAPI)
+        fetch(foodsAPI)
                 .then(resp => resp.json())
                 .then(() => this.setStateOnLoad())
-        }
     }
 
     filterFoodsByMonth = event => {
@@ -64,17 +50,29 @@ class FoodPage extends Component {
                 < Route exact path={this.props.match.path} render={() => {
                     return (
                         <Fragment>
-                            < SearchAndFilter 
-                                months={this.state.months} 
-                                filterByMonth={this.filterFoodsByMonth}
-                                search={this.updateSearchTerm}
-                            />
+                            <div className="banner">
+                                <img src={this.props.currentMonth.image} className="bannerImage" />
+                                <div className="content text-container">
+                                    <div>Find out what's</div> 
+                                    <div> in season in {this.props.currentMonth.name}</div>
+                                </div>
+                                {
+                                    this.props.username
+                                        ? < SearchAndFilter 
+                                            months={this.props.months} 
+                                            filterByMonth={this.filterFoodsByMonth}
+                                            search={this.updateSearchTerm}
+                                        />
+                                        : null
+                                }
+                            </div>
                             < FoodContainer 
                                 allFoods={this.props.foods}
-                                currentMonth={this.state.currentMonth} 
+                                currentMonth={this.props.currentMonth} 
                                 selectedMonth={this.state.selectedMonth} 
                                 searchTerm={this.state.searchTerm}
                                 addItemToList={this.props.addItemToList}
+                                username={this.props.username}
                             />
                         </Fragment>
                     )

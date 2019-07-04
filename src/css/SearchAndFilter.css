@@ -1,11 +1,7 @@
-.search-bar {
-    position: relative;
-}
-
 .search-container {
     position: absolute;
     right: 0;
-    top: 10px;
+    bottom: 10px;
 }
 
 .search-filter {

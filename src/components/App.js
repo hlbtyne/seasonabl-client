@@ -14,6 +14,7 @@ import { validate } from '../services/api'
 const baserURL = "http://localhost:3001"
 const usersURL = `${baserURL}/users`
 const foodsURL = `${baserURL}/foods`
+const monthsURL = `${baserURL}/months`
 const shoppingListURL = `${baserURL}/shopping_list_items`
 
 class App extends Component {
@@ -22,7 +23,9 @@ class App extends Component {
     foods: [],
     username: '',
     currentUser: null,
-    shoppingList: []
+    shoppingList: [],
+    months: [],
+    currentMonth: '',
   }
 
   signup = (event, user) => {
@@ -68,6 +71,7 @@ class App extends Component {
           alert(data.error)
         } else {
           this.login(data)
+          this.setMonth()
           return fetch(foodsURL)
             .then(resp => resp.json())
             .then(foods => this.setState({ foods }))
@@ -139,15 +143,27 @@ class App extends Component {
     .then(user => this.setState({ shoppingList: user.foods }))
   }
 
+  setMonth = () => {
+    const today = new Date()
+        fetch(monthsURL)
+            .then(resp => resp.json())
+            .then(months => {
+                this.setState({ months })
+                this.setState({ currentMonth: months[today.getMonth()] })
+            })
+  }
+
+  
+
   render() {
     const { login, logout } = this
     const { username } = this.state
     return (
       <div>
         <Navbar username={username} logout={logout}/>
-        <Route path='/foods' component={props => <FoodPage username={username} addItemToList={this.addItemToList} foods={this.state.foods} {...props} />} />
+        <Route path='/foods' component={props => <FoodPage username={username} addItemToList={this.addItemToList} foods={this.state.foods} months={this.state.months} currentMonth={this.state.currentMonth} {...props} />} />
         <Route path='/shoppinglist' component={props => <ShoppingList shoppingList={this.state.shoppingList} username={username} removeItem={this.removeItemFromList} {...props} />} />
-        <Route exact path='/' component={() => <LandingPage />} />
+        <Route exact path='/' component={props => <LandingPage {...props} />} />
         <Route path='/login' component={props => <LoginForm login={login} {...props} />} />
         <Route path='/signup' component={() => <SignupForm signup={this.signup} />} />
       </div>
