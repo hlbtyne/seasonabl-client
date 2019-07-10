@@ -68,10 +68,19 @@ class FoodPage extends Component {
                     return (
                         <Fragment>
                             <div className="banner">
-                                <img src={this.props.currentMonth.image} alt="" className="bannerImage" />
+                                {
+                                    this.state.selectedMonth
+                                        ? <img src={this.state.selectedMonth.image} alt="" className="bannerImage" />
+                                        : <img src={this.props.currentMonth.image} alt="" className="bannerImage" />
+                                }
+                                
                                 <div className="content text-container">
                                     <div>Find out what's</div> 
-                                    <div> in season in {this.props.currentMonth.name}</div>
+                                    {
+                                        this.state.selectedMonth
+                                            ? <div> in season in {this.state.selectedMonth.name}</div>
+                                            : <div> in season in {this.props.currentMonth.name}</div>
+                                    }
                                 </div>
                                 {
                                     this.props.username

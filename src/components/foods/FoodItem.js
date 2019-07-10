@@ -25,7 +25,9 @@ class FoodItem extends React.Component {
                                     >
                                         <p className="addText">+</p>
                                     </button>
-                                    : null
+                                    : <div className="food-page__not-in-season" >
+                                        <p className="not-in-season-text">Not currently in season</p>
+                                    </div>
                                 }
                             </div>
                         
