@@ -11,21 +11,24 @@ class FoodItem extends React.Component {
             <div className="food-item-tile">
                 {
                     username
-                        ? <Link to={`/foods/${food.id}`}>
+                        ? 
                             <div>
-                                <div className="food-item-name">{food.name}</div>
-                                <img src={food.image} alt={food.name} className="food-item-image"/>
-                                    {this.props.currentMonth.foods.find(f => f.name === food.name)
-                                        ? <button 
-                                            onClick={() => addItemToList(food)} 
-                                            className="add" 
-                                        >
-                                            +
-                                        </button>
-                                        : null
-                                    }
+                                <Link to={`/foods/${food.id}`}>
+                                    <div className="food-item-name">{food.name}</div>
+                                    <img src={food.image} alt={food.name} className="food-item-image"/>
+                                </Link>
+                                {
+                                    this.props.currentMonth.foods.find(f => f.name === food.name)
+                                    ? <button 
+                                        onClick={() => addItemToList(food)} 
+                                        className="food-page__add" 
+                                    >
+                                        <p className="addText">+</p>
+                                    </button>
+                                    : null
+                                }
                             </div>
-                        </Link>
+                        
                         : <div>
                             <div className="food-item-name">{food.name}</div>
                             <img src={food.image} alt={food.name} className="food-item-image"/>

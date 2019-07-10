@@ -9,7 +9,7 @@ import LandingPage from './LandingPage'
 import FoodPage from './foods/FoodPage'
 import ShoppingList from './ShoppingList'
 
-import { validate } from '../services/api'
+import { validate, login } from '../services/api'
 
 const baserURL = "http://localhost:3001"
 const usersURL = `${baserURL}/users`
@@ -28,42 +28,27 @@ class App extends Component {
     currentMonth: '',
   }
 
-  signup = (event, user) => {
-    event.preventDefault()
-    const newUser = {
-      name: user.name,
-      password: user.password
-    }
-    this.createNewUserBackend(newUser)
-    .then(user => this.login(user))
-  }
-
-  createNewUserBackend = user => {
-    return fetch(usersURL, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(user)
-    })
-    .then(resp => resp.json())
-  }
-
   login = user => {
-    this.setState({ username: user.name })
-    this.setState({ currentUser: user })
-    this.props.history.push("/foods")
-    localStorage.setItem('token', user.token)
-    this.updateShoppingList(user)
+    fetch(foodsURL)
+    .then(resp => resp.json())
+    .then(foods => {
+        this.props.history.push("/foods")
+        localStorage.setItem('token', user.token)
+        this.findCurrentUser(user)
+        .then(userInfo => {
+          this.setState({...this.state, username: userInfo.name, currentUser: user, shoppingList: userInfo.foods, foods: foods })
+         })
+    })
   }
 
   logout = () => {
-    this.setState({ username: '' })
-    this.setState({ currentUser: null })
-    this.setState({ shoppingList: [] })
+    this.setState({ username: '', currentUser: null, shoppingList: []  })
     this.props.history.push("/")
     localStorage.removeItem('token')
   }
 
   componentDidMount = () => {
+    this.setMonth()
     if (localStorage.token) {
       validate()
       .then(data => {
@@ -71,10 +56,6 @@ class App extends Component {
           alert(data.error)
         } else {
           this.login(data)
-          this.setMonth()
-          return fetch(foodsURL)
-            .then(resp => resp.json())
-            .then(foods => this.setState({ foods }))
         }
       })
     }
@@ -110,7 +91,7 @@ class App extends Component {
 
   removeItemFromList = food => {
     const remainingFoods = this.state.shoppingList.filter(f => f.id !== food.id)
-    setTimeout(() => this.setState({ shoppingList: remainingFoods }), 800);
+    setTimeout(() => this.setState({ shoppingList: remainingFoods }), 400);
     
     this.findCurrentUser(this.state.currentUser)
       .then(user => {
@@ -138,22 +119,14 @@ class App extends Component {
     ))
   }
 
-  updateShoppingList = user => {
-    this.findCurrentUser(user)
-    .then(user => this.setState({ shoppingList: user.foods }))
-  }
-
   setMonth = () => {
     const today = new Date()
         fetch(monthsURL)
             .then(resp => resp.json())
             .then(months => {
-                this.setState({ months })
-                this.setState({ currentMonth: months[today.getMonth()] })
+                this.setState({ months, currentMonth: months[today.getMonth()] })
             })
   }
-
-  
 
   render() {
     const { login, logout } = this
@@ -163,9 +136,9 @@ class App extends Component {
         <Navbar username={username} logout={logout}/>
         <Route path='/foods' component={props => <FoodPage username={username} addItemToList={this.addItemToList} foods={this.state.foods} months={this.state.months} currentMonth={this.state.currentMonth} {...props} />} />
         <Route path='/shoppinglist' component={props => <ShoppingList shoppingList={this.state.shoppingList} username={username} removeItem={this.removeItemFromList} {...props} />} />
-        <Route exact path='/' component={props => <LandingPage {...props} />} />
+        <Route exact path='/' component={props => <LandingPage currentMonth={this.state.currentMonth} {...props} />} />
         <Route path='/login' component={props => <LoginForm login={login} {...props} />} />
-        <Route path='/signup' component={() => <SignupForm signup={this.signup} />} />
+        <Route path='/signup' component={() => <SignupForm signup={this.signup} login={this.login}/>} />
       </div>
         
     )

@@ -1,0 +1,16 @@
+.recipe-strip {
+    position: relative;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: white;
+    text-align: left;
+}
+
+.recipe-item-name {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    font-size: 20px;
+    color: grey;
+}

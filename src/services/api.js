@@ -16,4 +16,14 @@ export function validate () {
     }).then(resp => resp.json())
 }
 
-export default { login, validate }
+export function getRecipeDetails (recipeId) {
+    const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/information`
+    return fetch(url, {
+        headers: {
+            "X-RapidAPI-Host": 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com', 
+            "X-RapidAPI-Key": '72161c23c9mshff16fb4cfa94eb4p14ebaejsn587b8503e8d3'
+        }
+    }).then(resp => resp.json())
+}
+
+export default { login, validate, getRecipeDetails }

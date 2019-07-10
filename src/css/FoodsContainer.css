@@ -6,6 +6,9 @@
 
 .foods-view {
     position: absolute;
-    top: 60% ;
+    width: 100%;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%);
     text-align: center;
 };

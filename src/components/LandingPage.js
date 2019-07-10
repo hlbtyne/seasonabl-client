@@ -6,10 +6,9 @@ class LandingPage extends Component {
 
     render() {
         
-
         return (
             <div className="banner">
-                <img src={this.props.currentMonth.image} className="bannerImage"/>
+                <img src={this.props.currentMonth.image} alt="" className="bannerImage" />
                 <div className="content">
                     <div className="text-container">
                         <div className="text">Know what's in season.</div>
@@ -21,9 +20,6 @@ class LandingPage extends Component {
                         <Link to='/signup'><button className="button">Sign up</button></Link>
                     </div>
                 </div>
-                
-                
-                
             </div>
             
         );
@@ -31,3 +27,4 @@ class LandingPage extends Component {
 }
 
 export default LandingPage;
+

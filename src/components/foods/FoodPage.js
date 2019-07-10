@@ -2,9 +2,11 @@ import React, {Fragment, Component} from "react";
 import { Route } from 'react-router-dom';
 import FoodContainer from './FoodContainer';
 import FoodDetails from './FoodDetails';
+import RecipeDetails from './RecipeDetails';
 import SearchAndFilter from './SearchAndFilter';
 import '../../css/FoodPage.css'
-import { SSL_OP_MICROSOFT_BIG_SSLV3_BUFFER } from "constants";
+
+
 
 const foodsAPI = 'http://localhost:3001/foods'
 
@@ -12,12 +14,12 @@ class FoodPage extends Component {
 
     state = {
         selectedMonth: null,
-        searchTerm: null
+        searchTerm: null,
+        selectedRecipe: null,
     }
 
     setStateOnLoad = () => {
-        this.setState({ selectedMonth: null })
-        this.setState({ searchTerm: null })
+        this.setState({ selectedMonth: null, searchTerm: null, selectedRecipe: null, selectedFood: null })
     }
 
     componentDidMount = () => {
@@ -27,7 +29,7 @@ class FoodPage extends Component {
     }
 
     filterFoodsByMonth = event => {
-        const selectedMonth = this.state.months.filter(m => m.name.toLowerCase() === event.target.value.toLowerCase())
+        const selectedMonth = this.props.months.filter(m => m.name.toLowerCase() === event.target.value.toLowerCase())
         this.setState({ selectedMonth: selectedMonth[0] })
     }
 
@@ -37,21 +39,36 @@ class FoodPage extends Component {
         })
       }
 
+    selectRecipe = recipe => {
+        this.setState({
+            selectedRecipe: recipe
+        })
+    }
+
     render() {
-        
+        // debugger
         return (
             <div className="food-page">
-                < Route path={`/foods/:id`} render={props => {
+                < Route exact path={`/foods/:id`} render={props => {
                     return <FoodDetails 
                         id={(props.match.params.id)} 
+                        currentMonth={this.props.currentMonth}
                         addItemToList={this.props.addItemToList} 
+                        { ...props }
+                    />
+                }}/>
+                < Route path={`${this.props.match.path}/recipes/:id`} render={props => {
+                    return <RecipeDetails 
+                        id={(props.match.params.id)}
+                        image={props.image}
+                        { ...props }
                     />
                 }}/>
                 < Route exact path={this.props.match.path} render={() => {
                     return (
                         <Fragment>
                             <div className="banner">
-                                <img src={this.props.currentMonth.image} className="bannerImage" />
+                                <img src={this.props.currentMonth.image} alt="" className="bannerImage" />
                                 <div className="content text-container">
                                     <div>Find out what's</div> 
                                     <div> in season in {this.props.currentMonth.name}</div>

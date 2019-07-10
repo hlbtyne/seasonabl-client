@@ -27,19 +27,16 @@
     color: #87a890;
 }
 
-.recipe-strip {
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: white;
-    /* border: solid 0.2px #87a890; */
-}
-
-.add {
+.food-details__add {
     position: absolute;
     bottom: 5px;
     right: 5px;
     background-color: transparent;
-    font-size: 50px;
+    font-size: 70px;
     border: none;
     color: white;
+}
+
+.food-details__add:hover {
+    font-size: 75px;
 }

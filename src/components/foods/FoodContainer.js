@@ -12,6 +12,7 @@ class FoodContainer extends React.Component {
                     key={food.id} 
                     currentMonth={this.props.currentMonth}
                     addItemToList={this.props.addItemToList}
+                    username={this.props.username}
                 /> 
             )
         }
@@ -22,6 +23,7 @@ class FoodContainer extends React.Component {
                     key={food.id} 
                     currentMonth={this.props.currentMonth}
                     addItemToList={this.props.addItemToList}
+                    username={this.props.username}
                 /> 
             )
         }
