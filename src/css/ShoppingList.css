@@ -1,8 +1,11 @@
 .shopping-list-view {
-    text-align: center;
+    /* text-align: center; */
 }
 
 .shopping-list-container {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
     margin-top: 30px;
     width: 80%;
     display: inline-block;
@@ -20,6 +23,7 @@
 
 .image {
     width: 70px;
+    height: 70px;
     object-fit: cover;
     border-radius: 15px;
 }
@@ -30,6 +34,7 @@
     left: 90px;
     transform: translate(0, -50%);
     font-size: 20px;
+    color: grey;
 }
 
 .shopping-list-title {
@@ -42,11 +47,31 @@
     border: solid 0.5px #e9f1ed;
 }
 
-.checkbox {
+.checkbox-container {
     position: absolute;
-    width: 30px;
-    height: 30px;
     top: 50%;
     right: 50px;
     transform: translate(0, -50%);
+}
+
+.checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-size: 20px;
+}
+
+.shopping-list-text {
+    margin-top: 30px;
+    font-size: 20px;
+    color: grey;
+}
+
+.button {
+    /* position: absolute; */
+    margin-top: 20px;
+    right: 20px;
+    width: 150px;
+    /* height: 50px; */
+    
 }

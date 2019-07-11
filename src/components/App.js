@@ -133,7 +133,7 @@ class App extends Component {
     const { username } = this.state
     return (
       <div>
-        <Navbar username={username} logout={logout}/>
+        <Navbar username={username} logout={logout} shoppingList={this.state.shoppingList}/>
         <Route path='/foods' component={props => <FoodPage username={username} addItemToList={this.addItemToList} foods={this.state.foods} months={this.state.months} currentMonth={this.state.currentMonth} {...props} />} />
         <Route path='/shoppinglist' component={props => <ShoppingList shoppingList={this.state.shoppingList} username={username} removeItem={this.removeItemFromList} {...props} />} />
         <Route exact path='/' component={props => <LandingPage currentMonth={this.state.currentMonth} {...props} />} />

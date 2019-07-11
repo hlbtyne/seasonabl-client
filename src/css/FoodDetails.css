@@ -28,15 +28,31 @@
 }
 
 .food-details__add {
+    position: relative;
     position: absolute;
-    bottom: 5px;
-    right: 5px;
-    background-color: transparent;
-    font-size: 70px;
+    height: 50px;
+    width: 50px;
+    bottom: 15px;
+    right: 12px;
+    background-color: black;
+    opacity: 0.5;
     border: none;
-    color: white;
+    border-radius: 10px;
 }
 
 .food-details__add:hover {
-    font-size: 75px;
+    opacity: 1.0;
+    background-color: transparent;
+}
+
+.addText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 0px;
+    padding-bottom: 15px;
+    /* opacity: 1.0; */
+    font-size: 70px;
+    color: white;
 }

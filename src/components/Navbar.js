@@ -14,7 +14,11 @@ class LandingPage extends Component {
                             <Link to='/foods'>
                                 <img className="logo" src="logo/1.png" alt="logo"/>
                             </Link>
-                            <Link to='/shoppinglist'><div className="nav-button">Shopping list</div></Link>
+                            <Link to='/shoppinglist'>
+                                <div className="nav-button">
+                                    Shopping list
+                                </div>
+                            </Link>
                         </Fragment>
                         : <Link to='/'>
                             <img className="logo" src="logo/1.png" alt="logo"/>

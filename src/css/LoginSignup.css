@@ -8,11 +8,17 @@
     -webkit-background-size: cover;
 }
 
+.title {
+    margin-top: 20px;
+    font-size: 50px;
+    color: white;
+}
+
 .form {
     width: 50%;
     min-width: 150px;
-    height: 380px;
-    margin: 50px;
+    height: 520px;
+    margin: 20px;
     padding: 30px;
     display: inline-block;
     background-color: white;
@@ -32,7 +38,10 @@
     font-size: 20px;
 }
 
-.button {
+.login-button {
+    margin-right: 0px;
+    width: 200px;
+    border-radius: 5px;
     -webkit-appearance: none;
     padding: 15px;
     width: 100px;
@@ -40,6 +49,17 @@
     border: solid 1px #87a890
 }
 
-.button:hover {
+.login-button:hover {
     background-color: #87a890;
+}
+
+
+
+.switch-form {
+    margin-top: 20px;
+    color: silver;
+}
+
+.switch-form:hover {
+    color: grey;
 }

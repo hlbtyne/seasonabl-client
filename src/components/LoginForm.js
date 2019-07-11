@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 import { login } from '../services/api'
 import '../css/LoginSignup.css'
 
@@ -28,6 +29,7 @@ class LoginForm extends React.Component {
 
         return (
             <div className="login-view">
+              <div className="title">Log in</div>
               <form className="form">
                   <div>
                     <div className="label"><p>Username</p></div>
@@ -50,9 +52,10 @@ class LoginForm extends React.Component {
                         placeholder="Password"
                     />
                   </div>
-                  <button className="button" onClick={handleSubmit} type="button">
+                  <button className="login-button" onClick={handleSubmit} type="button">
                     Log in
                   </button>
+                  <Link to='/signup'><div className="switch-form">Newbie? Sign up</div></Link>
                 </form>
             </div>
               

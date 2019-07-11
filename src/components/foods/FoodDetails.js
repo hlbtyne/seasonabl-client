@@ -1,5 +1,7 @@
 import React from "react";
 import '../../css/FoodDetails.css'
+import '../../css/index.css';
+
 // import { Link } from 'react-router-dom'
 
 import RecipeCard from './RecipeCard'
@@ -37,9 +39,10 @@ class FoodDetails extends React.Component {
                         this.props.currentMonth && this.props.currentMonth.foods.find(f => f.name === this.state.name)
                         ? <button 
                             onClick={() => this.props.addItemToList(this.state)} 
-                            className="food-details__add" 
+                            className="food-details__add tooltip" 
                         >
-                            +
+                            <span className="tooltiptext">Add to list</span>
+                            <p className="addText">+</p>
                         </button>
                         : null
                     }
