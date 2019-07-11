@@ -25,19 +25,24 @@ class SignupForm extends React.Component {
           password: this.state.password
         }
         this.createNewUserBackend(newUser)
-        .then(() => login(this.state.name, this.state.password)
         .then(data => {
           if (data.error) {
             alert(data.error)
           } else {
-            this.props.login(data)
-          }
-        }))
+            login(this.state.name, this.state.password)
+            .then(data => {
+            if (data.error) {
+              alert(data.error)
+            } else {
+              this.props.login(data)
+            }
+          })}
+        })
       } else {
         alert("Passwords do not match")
       }
     }
-  
+   
     createNewUserBackend = user => {
       return fetch(usersURL, {
         method: 'POST',

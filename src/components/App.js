@@ -40,7 +40,7 @@ class App extends Component {
          })
     })
   }
-
+ 
   logout = () => {
     this.setState({ username: '', currentUser: null, shoppingList: []  })
     this.props.history.push("/")
