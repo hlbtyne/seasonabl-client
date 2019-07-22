@@ -38,7 +38,7 @@ class RecipeDetails extends React.Component {
         return (
             <div>
                 <div className="recipe-header">
-                    <img className="recipe-header-image" src={this.state.image} alt="header image"/>
+                    <img className="recipe-header-image" src={this.state.image} alt={this.state.title}/>
                     <div className="recipe-header-text">{this.state.title}</div>
                     <button 
                         onClick={this.props.history.goBack} 

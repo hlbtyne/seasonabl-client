@@ -9,7 +9,7 @@ import LandingPage from './LandingPage'
 import FoodPage from './foods/FoodPage'
 import ShoppingList from './ShoppingList'
 
-import { validate, login } from '../services/api'
+import { validate } from '../services/api'
 
 const baserURL = "http://localhost:3001"
 const usersURL = `${baserURL}/users`

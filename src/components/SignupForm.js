@@ -19,28 +19,32 @@ class SignupForm extends React.Component {
 
     handleSubmit = (event) => {
       event.preventDefault()
-      if (this.state.password === this.state.passwordConf) {
-        const newUser = {
-          name: this.state.name,
-          password: this.state.password
-        }
-        this.createNewUserBackend(newUser)
-        .then(data => {
-          if (data.error) {
-            alert(data.error)
-          } else {
-            login(this.state.name, this.state.password)
-            .then(data => {
+      if (this.state.name && this.state.password && this.state.passwordConf) {
+        if (this.state.password === this.state.passwordConf) {
+          const newUser = {
+            name: this.state.name,
+            password: this.state.password
+          }
+          this.createNewUserBackend(newUser)
+          .then(data => {
             if (data.error) {
               alert(data.error)
             } else {
-              this.props.login(data)
-            }
-          })}
-        })
+              login(this.state.name, this.state.password)
+              .then(data => {
+              if (data.error) {
+                alert(data.error)
+              } else {
+                this.props.login(data)
+              }
+            })}
+          })
+        } else {
+          alert("Passwords do not match")
+        }
       } else {
-        alert("Passwords do not match")
-      }
+        alert("Please fill in all the fields")
+      } 
     }
    
     createNewUserBackend = user => {

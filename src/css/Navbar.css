@@ -26,3 +26,9 @@ a {
     color: grey;
     text-decoration: none;
   }
+
+@media screen and (max-width: 600px) {
+    .nav-button {
+        display: none;
+    }
+}

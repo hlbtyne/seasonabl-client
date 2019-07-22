@@ -25,18 +25,20 @@ class LandingPage extends Component {
                         </div>
                     </div>
                 </div>
-
-                <div className="three-step-diagram">
-                    <div className="step">
-                        <img src={step1} alt="fruit tree icon" className="step-image" />
-                    </div>
-                    <div className="step">
-                        <img src={step2} alt="basket of fruit icon" className="step-image" />
-                    </div>
-                    <div className="step">
-                        <img src={step3} alt=" green planet icon" className="step-image" />
+                <div className="diagram-container">
+                    <div className="three-step-diagram">
+                        <div className="step">
+                            <img src={step1} alt="fruit tree icon" className="step-image" />
+                        </div>
+                        <div className="step">
+                            <img src={step2} alt="basket of fruit icon" className="step-image" />
+                        </div>
+                        <div className="step">
+                            <img src={step3} alt=" green planet icon" className="step-image" />
+                        </div>
                     </div>
                 </div>
+                
             </div>
         );
     }
