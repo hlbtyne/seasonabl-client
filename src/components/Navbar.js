@@ -36,7 +36,7 @@ class LandingPage extends Component {
                         ? <div className="nav-button sessions"><Link onClick={this.props.logout}>Log out</Link></div>
                         : <div className="sessions">
                             <div className="nav-button"><Link to='/login'>Log in</Link></div>
-                            <div className="nav-button"><Link to='/signup'>Sign up</Link></div>
+                            <div className="nav-button signup"><Link to='/signup'>Sign up</Link></div>
                         </div>
                 }
             </div>

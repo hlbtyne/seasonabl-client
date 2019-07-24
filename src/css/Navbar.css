@@ -28,7 +28,13 @@ a {
   }
 
 @media screen and (max-width: 600px) {
-    .nav-button {
+    .signup {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .sessions {
         display: none;
     }
 }
