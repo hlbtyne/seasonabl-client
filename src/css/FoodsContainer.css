@@ -1,14 +1,10 @@
-.foods-container {
-    display: inline-block;
-    width: 95%;
-    min-width: 640px;
-}
 
 .foods-view {
     position: absolute;
     width: 100%;
     left: 50%;
-    top: 60%;
     transform: translate(-50%);
+    margin: 10px;
+    margin-right: 10px;
     text-align: center;
 };
