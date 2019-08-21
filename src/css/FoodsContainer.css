@@ -1,10 +1,10 @@
 
 .foods-view {
     position: absolute;
-    width: 100%;
+    /* width: 100%;
     left: 50%;
-    transform: translate(-50%);
+    transform: translate(-50%); */
     margin: 10px;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     text-align: center;
 };
